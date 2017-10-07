@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<style type="text/css">
+textarea {
+    height: 1em;
+    width: 50%;
+    padding: 3px;
+    transition: all 5s ease;
+}
+textarea:focus {
+    height: 4em;
+}
+</style>
+</head>
+<body>
+
+
+<div class="container">
+<form>
+    <div class="form-group">
+      <label for="jobtitle" >Enter jobtitle</label>
+      <input type="text" class="form-control" ng-model="job.jobtitle" name="jobtitle" id="jobtitle" placeholder="jobtitle ">
+    </div>
+    <div class="form-group">
+      <label for="jobdescription">Enter description</label>
+      <input type="text" class="form-control" ng-model="job.jobdescription" name="jobdescription" id="jobdescription" placeholder="jobdescription">
+    </div>
+   <div class="form-group">
+      <label for="skillsrequired">skillsrequired</label>
+      <input type="text" class="form-control" ng-model="job.skillsrequired" name="skillsrequired" id="skillsrequired" placeholder="skillsrequired ">
+    </div>
+     <div class="form-group">
+      <label for="location">location</label>
+      <textarea class="form-control" ng-model="job.location" name="location" rows="1" cols="10" placeholder="Enter Job Location "></textarea>
+    </div>
+    
+    <div class="form-group">
+      <label for="salary">salary</label>
+      <textarea class="form-control" ng-model="job.salary" name="salary"  placeholder="Enter Job salary "></textarea>
+    </div>
+    <div class="form-group">
+      <label for="companyname">companyname</label>
+      <textarea class="form-control" ng-model="job.companyname" name="companyname" placeholder="Entercompanyname"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="yearsofexp">yearsofexp</label>
+      <textarea class="form-control" ng-model="job.yearsofexp" name="yearsofexp"  placeholder="Enter yearsofexp"></textarea>
+    </div>
+    
+    <div class="form-group">
+   <button type="submit" class="btn btn-success center-block" ng-click="saveJob()">Submit</button>
+    </div>
+  </form>
+</div>
+</body>
+</html>

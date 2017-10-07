@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<!-- Website CSS style -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Website Font style -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+<link rel="stylesheet" href="style.css">
+<!-- Google Fonts -->
+<link href='https://fonts.googleapis.com/css?family=Passion+One'
+	rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Oxygen'
+	rel='stylesheet' type='text/css'>
+
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<style>
+body{
+    background-color: gray;
+}
+.centered-form{
+	margin-top: 60px;
+}
+
+.centered-form .panel{
+	background: rgba(255, 255, 255, 0.8);
+	box-shadow: rgba(0, 0, 0, 0.3) 20px 20px 20px;
+}
+</style> 
+</head>
+
+<body>
+<div class="container">
+<!-- <span style="color:red">{{exception.message}}</span> -->
+        <div class="row centered-form">
+        <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+        	<div class="panel panel-default">
+        		<div class="panel-heading">
+			    		<h3 class="panel-title">Please sign up  <small>It's free!</small></h3>
+			 			</div>
+			 			<div class="panel-body">
+			    		<form role="form">
+			    			<div class="row">
+			    				<div class="col-xs-6 col-sm-6 col-md-6">
+			    					<div class="form-group">
+			                <input type="text" name="first_name" id="first_name" class="form-control input-sm" placeholder="First Name" ng-model="user.firstname">
+			    					</div>
+			    				</div>
+			    				<div class="col-xs-6 col-sm-6 col-md-6">
+			    					<div class="form-group">
+			    						<input type="text" name="last_name" id="last_name" class="form-control input-sm" placeholder="Last Name"  ng-model="user.lastname" >
+			    					</div>
+			    				</div>
+			    			</div>
+
+			    			<div class="form-group">
+			    				<input type="email" name="email" id="email" class="form-control input-sm" placeholder="Email Address" ng-model="user.email">
+			    			</div>
+							<div class="form-group">
+			    				<input type="phonenumber" name="phonenumber" id="phonenumber" class="form-control input-sm" placeholder="Phone number" ng-model="user.phonenumber">
+			    			</div>
+
+			    			<div class="row">
+			    				<div class="col-xs-6 col-sm-6 col-md-6">
+			    					<div class="form-group">
+			    						<input type="username" name="username" id="username" class="form-control input-sm" placeholder="User name" ng-model="user.username">
+			    					</div>
+			    				</div>
+			    				 <div class="col-xs-6 col-sm-6 col-md-6">
+			    					<div class="form-group">
+			    						<input type="password" name="password" id="password" class="form-control input-sm" placeholder=" Password"ng-model="user.password">
+			    					</div>
+			    				</div>
+			    			</div>
+			    			 
+<div class="form-group">
+Select Role: 
+<input type="radio"  ng-model="user.role"  value="STUDENT">Student
+<input type="radio" ng-model="user.role" value="ALUMINI"> Alumini
+<input type="radio" ng-model="user.role" value="EMPLOYEE">Employee
+</div>
+			    			
+			    			<input type="submit" value="Register" ng-click="registerUser()" class="btn btn-info btn-block">
+			    		
+			    		</form>
+			    	</div>
+	    		</div>
+    		</div>
+    	</div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<style>
+.row{
+margin-top:75px;
+}
+</style>
+<div class="container">
+<div class=row>
+<div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<div>{{blogpost.blogtitle}}</div>
+
+<span><strong>CreatedBy</strong> {{blogpost.postedby.username}}</span>
+
+<span><strong>On:</strong> {{blogpost.postedOn}}</span>
+
+</div>
+<div class="panel-body">
+<span><strong>Description: </strong> {{blogpost.blogdescription}}</span>
+</div>
+</div>
+
+</div>
+
+<div>
+<ul>
+<b>Add Comments</b>
+<li style="list:none" ng-repeat="comment in blogcomments">
+{{comment.commenttxt}}<br>
+commented by: {{comment.commentedby.username}}
+commentedOn: {{comment.commentedOn | date:'medium'}}
+</li>
+</ul>
+</div>
+</div>
+<textarea rows="3" cols="10" ng-model="BlogComment.commenttxt"></textarea>
+<button class="btn btn-default" ng-click="addcomment()">comment</button>
+</div>
