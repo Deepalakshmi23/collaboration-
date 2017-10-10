@@ -23,33 +23,32 @@ public class ProfilePictureController {
 	@Autowired
 private ProfilePictureDao profilePictureDao;
 	@RequestMapping(value="/uploadprofilepic",method=RequestMethod.POST)
-public ResponseEntity<?> uploadProfilePicture(@RequestParam CommonsMultipartFile image,HttpSession session){
-	User user=(User)session.getAttribute("user");
-	if(user==null)		{
-		    Error error=new Error(3,"UnAuthorized user");
+public ResponseEntity<?>saveProfilePicture(@RequestParam CommonsMultipartFile image,HttpSession session){
+	
+	/*User user=(User)session.getAttribute("user");
+	System.out.println(user.getUsername());*/
+	if( session.getAttribute("username")==null){
+		    Error error=new Error(3,"UnAuthorized acess");
 			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
 	} 
-	ProfilePicture profilePicture=new ProfilePicture();
-	profilePicture.setUsername(user.getUsername());
-	profilePicture.setImage(image.getBytes());
-	profilePictureDao.saveProfilePicture(profilePicture);
-	return new ResponseEntity<User>(user,HttpStatus.OK);
+	String username=(String) session.getAttribute("username");
+	
+	ProfilePicture profilepicture=new ProfilePicture();
+	profilepicture.setUsername(username);
+	profilepicture.setImage(image.getBytes());
+	profilePictureDao.saveProfilePicture(profilepicture);
+	return new  ResponseEntity<ProfilePicture>(profilepicture,HttpStatus.OK);
 }
 	
 	@RequestMapping(value="/getprofilepic/{username}", method=RequestMethod.GET)
-	public @ResponseBody byte[] getProfilePic(@PathVariable String username,HttpSession session){
-		User user=(User)session.getAttribute("user");
-		if(user==null)
+	public @ResponseBody byte[]getProfilePicture(@PathVariable String username,HttpSession session){
+		if( session.getAttribute("username")==null)
+			return null;
+		ProfilePicture profilepicture=profilePictureDao.getProfilePicture(username);
+		if(profilepicture==null)
 			return null;
 		else
-		{
-			ProfilePicture profilePic=profilePictureDao.getProfilePicture(username);
-			if(profilePic==null)
-				return null;
-			else
-				return profilePic.getImage();
-		}
+			return profilepicture.getImage();
+	}
 		
 }
-}
-

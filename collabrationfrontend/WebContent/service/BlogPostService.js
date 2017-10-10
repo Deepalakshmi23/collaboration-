@@ -28,6 +28,9 @@ app.factory('BlogPostService',function($http){
 		blogPostService.getApprovalStatus=function(){
 			return $http.get(BASE_URL + "/blogpostapprovalstatus")
 		}
+		blogPostService.addcomment=function(BlogComment){
+			return	$http.post(BASE_URL + "/saveBlogcomment",BlogComment)
+			}
 	
 		blogPostService.getallcomments=function(blogpostid){
 			console.log(blogpostid)

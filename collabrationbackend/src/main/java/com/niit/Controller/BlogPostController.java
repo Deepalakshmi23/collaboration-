@@ -30,8 +30,11 @@ public class BlogPostController {
 	
 	@RequestMapping(value="/saveBlogpost" , method=RequestMethod.POST)
 	public ResponseEntity<?> saveblogpost(@RequestBody BlogPost blogpost,HttpSession session){
+		
+		
 		if( session.getAttribute("username")==null){
 			Error error=new Error(5,"Unauthorized access");
+			
 			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
 		}
 		String username=(String) session.getAttribute("username");

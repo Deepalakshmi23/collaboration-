@@ -27,4 +27,26 @@ app.controller('BlogPostDetailController',function($scope,$location,BlogPostServ
 	  $scope.setValueForRejectionTxt=function(val){
 	    	$scope.showRejectionTxt=val
 	  }
+	  $scope.addcomment=function(){
+			$scope.BlogComment.blogpost=$scope.blogpost
+			BlogPostService.addcomment($scope.BlogComment).then(function(response){
+				$scope.BlogComment.commenttxt=''
+				console.log(response.data)
+				getallcomments()
+			},function(response){
+				console.log(response.data)
+			})
+		}
+		
+		function getallcomments(){
+			BlogPostService.getallcomments(id).then(function(response){
+				$scope.blogcomments=response.data
+				console.log(response.data)
+			},function(response){
+				console.log(response.data)
+			})
+		}
+		
+		getallcomments()
+	
 })

@@ -11,6 +11,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.niit.model.BlogComment;
 import com.niit.model.BlogPost;
 
 @Repository
@@ -60,6 +61,17 @@ public class BlogPostdaoImpl implements BlogPostdao {
 		return blogPosts;
 	}
 	
+	public void saveblogcomment(BlogComment blogcomment) {
+		Session session=sessionFactory.getCurrentSession();
+		session.save(blogcomment);
+	}
+
+	public List<BlogComment> getallcomments(int blogid) {
+		Session session=sessionFactory.getCurrentSession();
+		Query query=session.createQuery("from BlogComment where blogpost.blogpostId=?");
+		query.setInteger(0,blogid);
+		return query.list();
+	}
 	
 	
 }
