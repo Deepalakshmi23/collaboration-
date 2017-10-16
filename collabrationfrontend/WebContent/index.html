@@ -21,20 +21,18 @@
 <title>Insert title here</title>
 <style type="text/css">
 .rw-number-notification {
-position: absolute;
-top: -7px;
-right: -6px;
-padding: 3px 3px 2px 3px;
-background-color: red;
-color: white;
-font-family: arial;
-font-weight: bold;
-font-size: 10px;
-border-radius: 4px;
-box-shadow: 1px 1px 1px silver;
+	position: absolute;
+	top: -7px;
+	right: -6px;
+	padding: 3px 3px 2px 3px;
+	background-color: red;
+	color: white;
+	font-family: arial;
+	font-weight: bold;
+	font-size: 10px;
+	border-radius: 4px;
+	box-shadow: 1px 1px 1px silver;
 }
-
-
 </style>
 </head>
 <body ng-app="ngApp">
@@ -62,18 +60,25 @@ box-shadow: 1px 1px 1px silver;
 						<li><a href="" ng-show="currentUser.firstname">welcome
 								{{currentUser.firstname}} {{currentUser.lastname}}</a></li>
 						<li><a href="#/editprofile" ng-show="currentUser.firstname">UPADATEPROFILE</a></li>
-						 <li class=" dropdown"><a href="" ng-show="currentUser.username" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Blog <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#/saveblogpost" ng-show="currentUser.username"> AddBlog</a></li>
-                                <li><a href="#/getallblogs" ng-show="currentUser.username"> Get All Blogs</a></li>
-                            </ul>
-                        </li>
-						
-						 <li><a href="#/uploadprofilepic" ng-show="currentUser.username">
-                    <img src="http://localhost:8085/collabrationbackend/getprofilepic/{{currentUser.username}}" alt="upload Picture" width="30px" height="30px" class="img-rounded">
-                    </a></li>
-						
-						
+						<li class=" dropdown"><a href=""
+							ng-show="currentUser.username" class="dropdown-toggle active"
+							data-toggle="dropdown" role="button" aria-haspopup="true"
+							aria-expanded="false">Blog <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="#/saveblogpost" ng-show="currentUser.username">
+										AddBlog</a></li>
+								<li><a href="#/getallblogs" ng-show="currentUser.username">
+										Get All Blogs</a></li>
+							</ul></li>
+
+						<li><a href="#/uploadprofilepic"
+							ng-show="currentUser.username"> <img
+								src="http://localhost:8085/collabrationbackend/getprofilepic/{{currentUser.username}}"
+								alt="upload Picture" width="30px" height="30px"
+								class="img-rounded">
+						</a></li>
+
+
 						<li class=" down"><a class="dropdown-toggle active"
 							data-toggle="dropdown" role="button" aria-haspopup="true"
 							aria-expanded="false" ng-show="currentuser.username">JOBS<span
@@ -82,22 +87,56 @@ box-shadow: 1px 1px 1px silver;
 								<li><a href="#/savejob" ng-show="currentUser.role=='ADMIN'">AddJob</a></li>
 								<li><a href="#/getalljobs" ng-show="currentUser.username">ViewJob</a></li>
 							</ul></li>
-							
+
 						<li class="dropdown"><a href="" class="dropdown-toggle"
-						data-toggle="dropdown" ng-show="currentUser.username"> 
-						<span class="glyphicon glyphicon-globe">
-						<span class="rw-number-notification"  ng-if="approvalStatus.length>0" >{{approvalStatus.length}}</span></span></a> 
+							data-toggle="dropdown" ng-show="currentUser.username"> <span
+								class="glyphicon glyphicon-globe"> <span
+									class="rw-number-notification" ng-if="approvalStatus.length>0">{{approvalStatus.length}}</span></span></a>
+							</a>
+							<ul class="dropdown-menu">
+
+								<li ng-repeat="blogPostStatus in approvalStatus"><a
+									href="#/approvalstatus/{{blogPostStatus.blogpostId}}">"{{blogPostStatus.blogtitle}}"
+										is <span ng-if="blogPostStatus.approved">Approved</span> <span
+										ng-if="!blogPostStatus.approved">Rejected</span>
+								</a></li>
+
+							</ul></li>
+						<li class="dropdown"><a href="" class="dropdown-toggle"
+							data-toggle="dropdown" ng-show="currentUser.username"> Friend
+								<b class="caret"></b>
 						</a>
-						<ul class="dropdown-menu">
-						    
-							<li ng-repeat="blogPostStatus in approvalStatus">
-							<a href="#/approvalstatus/{{blogPostStatus.blogpostId}}">"{{blogPostStatus.blogtitle}}" is 
-							      <span ng-if="blogPostStatus.approved">Approved</span>
-							      <span ng-if="!blogPostStatus.approved">Rejected</span></a></li>
+							<ul class="dropdown-menu">
+								<li><a href="#/suggestedusers">List of suggested users</a></li>
+								<li><a href="#/pendingrequests">Pending Requests</a></li>
+								<li><a href="#/getfriends">Friends({{noOfFriends}})</a></li>
+								<li><a></a></li>
+							</ul></li>
+						 
+  <li><a href="#/Chat" ng-show="currentUser.username">chat </a></li>
+ 
+      
+     
+      
+</html>
+
 						
-						</ul></li>
-						
-								<li><a href="" ng-click="logout()"
+					<!-- 	<li class="dropdown"><a href="" class="dropdown-toggle"
+							data-toggle="dropdown" ng-show="currentUser.username"> Friend
+								<b class="caret"></b>
+						</a>
+							<ul class="dropdown-menu">
+								<li ng-repeat="request in pendingRequests">
+								<table class="table table-striped">
+									<tr>
+										<td>{{request.fromId}}</td>
+										<td><a class="btn btn-primary"
+											ng-click="updatePendingRequest(request,'A')">Confirm</a></td>
+								</table>
+								</li>
+							</ul> -->
+
+						<li><a href="" ng-click="logout()"
 							ng-show="currentUser.firstname">logout</a></li>
 
 
@@ -121,7 +160,6 @@ box-shadow: 1px 1px 1px silver;
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
       <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css"> -->
 
-
 <script type="text/javascript"
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.js"></script>
 
@@ -133,7 +171,6 @@ box-shadow: 1px 1px 1px silver;
 <script type="text/javascript" src="controller/usercontroller.js"></script>
 <script type="text/javascript" src="service/userservice.js"></script>
 
-
 <script type="text/javascript" src="controller/jobcontroller.js"></script>
 <script type="text/javascript" src="service/jobservice.js"></script>
 
@@ -141,7 +178,18 @@ box-shadow: 1px 1px 1px silver;
 <script type="text/javascript" src="controller/BlogPostController.js"></script>
 <script type="text/javascript" src="service/BlogPostService.js"></script>
 
-<script type="text/javascript" src="controller/BlogPostDetailController.js"></script>
+<script type="text/javascript"
+	src="controller/BlogPostDetailController.js"></script>
 <script type="text/javascript" src="controller/homecontroller.js"></script>
-	
+
+
+<script type="text/javascript" src="controller/friendController.js"></script>
+<script type="text/javascript" src="service/FriendService.js"></script>
+
+<script  type="text/javascript" src="js/sockjs/sockjs/sockjs.js"></script>
+<script type="text/javascript" src="js/stomp/dist/stomp.js"></script>
+
+<script type="text/javascript" src="controller/chatcontroller.js"></script>
+<script type="text/javascript" src="service/chatservice.js"></script> 
+
 </html>

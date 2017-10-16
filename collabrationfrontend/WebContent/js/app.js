@@ -4,6 +4,7 @@
 var app=angular.module("ngApp",['ngRoute','ngCookies'])
 app.config(function($routeProvider){
 	$routeProvider
+	
 	.when('/home',{
 		templateUrl:'views/home.html',
 		controller:'HomeController'
@@ -53,6 +54,24 @@ app.config(function($routeProvider){
 	 .when('/uploadprofilepic',{
 		templateUrl: 'views/uploadprofilepic.html'
 	})
+	.when('/suggestedusers',{
+		templateUrl:'views/suggestedusers.html',
+		controller:'FriendController'
+		
+	})
+	.when('/pendingrequests',{
+		templateUrl:'views/pendingRequests.html',
+		controller:'FriendController'//From C to V
+	})
+	.when('/getfriends',{
+		templateUrl:'views/listoffriends.html',
+		controller:'FriendController'//From C to V
+	})
+	 .when('/Chat',{
+		templateUrl:'views/Chat.html',
+		controller:'ChatCtrl'
+	})
+	
     
 	.otherwise({
 		templateUrl:'views/home.html'
