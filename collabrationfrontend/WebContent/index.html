@@ -112,34 +112,55 @@
 								<li><a href="#/getfriends">Friends({{noOfFriends}})</a></li>
 								<li><a></a></li>
 							</ul></li>
-						 
-  <li><a href="#/Chat" ng-show="currentUser.username">chat </a></li>
- 
-      
-     
-      
-</html>
+
+						<li><a href="#/chat" ng-show="currentUser.username">chat
+						</a></li>
+						<li class=" dropdown"><a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" ng-show="currentUser.username"> <span class="glyphicon glyphicon-user" ><span class="rw-number-notification" ng-if="pendingRequestsLength>0">{{pendingRequestsLength}} </span> </span></a>
+                            <ul class="dropdown-menu" ng-click="reset()">
+                                <li ng-repeat="request in pendingRequests">
+                               <a href="" > <table class="table table-stripped">
+                                <tr>
+                                <td>{{request.fromid}}</td>
+                                <td><a class="btn btn-primary" href="" ng-click="updatePendingRequest(request,'A')">Confirm</a></td>
+                                <td><a class="btn btn-danger" href="" ng-click="updatePendingRequest(request,'D')">Delete</a></td>
+                                </tr></table></a>
+                                </li>
+                                <li><a href=""><span ng-if="pendingRequestsLength==0">No friend requests </span></a></li>
+                            </ul>
+</li>
+						<!--   <ul class="nav navbar-nav pull-right">  
+
+						<li class=" dropdown"><a href="" class="dropdown-toggle"
+							data-toggle="dropdown" role="button" aria-haspopup="true"
+							aria-expanded="false" ng-show="currentuser.username"> <span
+								class="glyphicon glyphicon-user"><span
+									class="rw-number-notification" ng-if="pendingRequestsLength>0">{{pendingRequestsLength}}
+								</span> </span></a>
+							<ul class="dropdown-menu" ng-click="reset()">
+								<li ng-repeat="request in pendingRequests"><a href="">
+										<table class="table table-stripped">
+											<tr>
+												<td>{{request.fromid}}</td>
+												<td><a class="btn btn-primary" href=""
+													ng-click="updatePendingRequest(request,'A')">Confirm</a></td>
+												<td><a class="btn btn-danger" href=""
+													ng-click="updatePendingRequest(request,'D')">Delete</a></td>
+											</tr>
+										</table>
+								</a></li>
+								</ul>
+								
+								<li><a href=""><span ng-if="pendingRequestsLength==0">No
+											friend requests </span></a></li>
+							
 
 						
-					<!-- 	<li class="dropdown"><a href="" class="dropdown-toggle"
-							data-toggle="dropdown" ng-show="currentUser.username"> Friend
-								<b class="caret"></b>
-						</a>
-							<ul class="dropdown-menu">
-								<li ng-repeat="request in pendingRequests">
-								<table class="table table-striped">
-									<tr>
-										<td>{{request.fromId}}</td>
-										<td><a class="btn btn-primary"
-											ng-click="updatePendingRequest(request,'A')">Confirm</a></td>
-								</table>
-								</li>
-							</ul> -->
-
+						</ul> -->
+						
+						
 						<li><a href="" ng-click="logout()"
 							ng-show="currentUser.firstname">logout</a></li>
-
-
+						
 					</ul>
 
 				</div>
@@ -186,10 +207,10 @@
 <script type="text/javascript" src="controller/friendController.js"></script>
 <script type="text/javascript" src="service/FriendService.js"></script>
 
-<script  type="text/javascript" src="js/sockjs/sockjs/sockjs.js"></script>
+<script type="text/javascript" src="js/sockjs/sockjs/sockjs.js"></script>
 <script type="text/javascript" src="js/stomp/dist/stomp.js"></script>
 
 <script type="text/javascript" src="controller/chatcontroller.js"></script>
-<script type="text/javascript" src="service/chatservice.js"></script> 
+<script type="text/javascript" src="service/chatservice.js"></script>
 
 </html>

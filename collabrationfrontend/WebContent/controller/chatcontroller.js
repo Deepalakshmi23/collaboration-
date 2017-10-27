@@ -1,6 +1,3 @@
-/**
- * 
- */
 app.controller('ChatCtrl', ['$rootScope' ,'$scope', 'socket', function($rootScope ,$scope, socket) {
     alert('entering chat controller')
     $scope.chats = [];
@@ -50,8 +47,7 @@ app.controller('ChatCtrl', ['$rootScope' ,'$scope', 'socket', function($rootScop
         $scope.users.push(user);
         $scope.$apply();
     };
- 
-    
+
     $scope.$on('sockConnected', function(event, frame) {
         $scope.userName=$rootScope.currentUser.username;
   
@@ -87,7 +83,7 @@ app.controller('ChatCtrl', ['$rootScope' ,'$scope', 'socket', function($rootScop
         }
     };
 
-
+ 
     $scope.addChat = function(chat) {
         $scope.chats.push(chat);
     };

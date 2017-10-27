@@ -67,7 +67,7 @@ app.config(function($routeProvider){
 		templateUrl:'views/listoffriends.html',
 		controller:'FriendController'//From C to V
 	})
-	 .when('/Chat',{
+	 .when('/chat',{
 		templateUrl:'views/Chat.html',
 		controller:'ChatCtrl'
 	})

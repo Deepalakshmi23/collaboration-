@@ -1,19 +1,47 @@
 package com.niit.Controller;
 
+
+
+
+
 import java.util.ArrayList;
+
 import java.util.List;
 
+
 import org.apache.commons.logging.Log;
+
 import org.apache.commons.logging.LogFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
+
+
 import org.springframework.messaging.handler.annotation.DestinationVariable;
+import org.springframework.messaging.handler.annotation.MessageExceptionHandler;
+
 import org.springframework.messaging.handler.annotation.MessageMapping;
+
 import org.springframework.messaging.simp.SimpMessagingTemplate;
+
+import org.springframework.messaging.simp.annotation.SendToUser;
+
+//import org.springframework.messaging.simp.annotation.SubscribeEvent;
+
 import org.springframework.messaging.simp.annotation.SubscribeMapping;
+
+import org.springframework.scheduling.annotation.Scheduled;
+
+import org.springframework.stereotype.Controller;
+
+
+
 import com.niit.dao.UserDao;
 import com.niit.model.Chat;
 
+
+@Controller
 public class SockController {
+
 	private static final Log logger = LogFactory.getLog(SockController.class);
 
 	private final SimpMessagingTemplate messagingTemplate;
